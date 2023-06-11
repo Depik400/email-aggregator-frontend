@@ -1,26 +1,28 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import {Context} from "./index";
+import {observer} from "mobx-react-lite";
+import { RouterProvider } from 'react-router-dom';
+import Router from './routes';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const {auth} = useContext(Context)
+    useEffect(() => {
+        auth.refresh();
+    })
+    return (
+        <div className="App">
+            <div className="App-header">
+                <QueryClientProvider client={queryClient}>
+                    <RouterProvider router={Router}></RouterProvider>
+                </QueryClientProvider>
+            </div>
+        </div>
+    );
 }
 
-export default App;
+export default observer(App);

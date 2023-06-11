@@ -1,0 +1,40 @@
+@import '../../style/variables';
+
+.login__form{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    & > div:first-child {
+        color:  $primary-text
+    }
+    .login__form-input {
+        padding: 12px 8px;
+        border-radius: 4px;
+        font-size: 20px;
+        border: none;
+        &:focus-visible, &:focus, &:focus-within {
+            border: none;
+            outline: none;
+        }
+    }
+    .error {
+        color: red;
+        font-size: 14px;
+        width: 100%;
+    }
+    button {
+        border: none;
+        width: 50%;
+        height: 40px;
+        border-radius: 4px;
+        font-size: 20px;
+        background: $background-secondary;
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+    }
+}
